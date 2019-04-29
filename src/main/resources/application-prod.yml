@@ -1,0 +1,53 @@
+server:
+  port: 8089
+  context-path: /springBootDemo
+userNames: 蒋圣强 #使用userName作为属性名获取到的是DELL，可能userName是关键字。
+nickName: Mr.J
+user:  "userName: ${userNames}, nkicName: ${nickName}}"
+
+userMan:
+  nickName: Mr.L
+  sex: 男
+
+
+#数据源配置
+spring:
+  datasource:
+      name: test
+      url: jdbc:mysql://localhost:3306/test
+      username: root
+      password: root
+      # 使用druid数据源
+      type: com.alibaba.druid.pool.DruidDataSource
+      driver-class-name: com.mysql.jdbc.Driver
+      filters: stat
+      maxActive: 20 #连接池的最大数据库连接数。设为0表示无限制
+      initialSize: 1  #初始化连接:连接池启动时创建的初始化连接数量
+      maxWait: 60000   #最大建立连接等待时间。如果超过此时间将接到异常。设为-1表示无限制
+      minIdle: 1  #最小空闲连接:连接池中容许保持空闲状态的最小连接数量,低于这个数量将创建新的连接
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validation-query: "SELECT 'X' FROM DUAL"
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+
+
+
+
+#MyBatis 相关的配置如下
+mybatis:
+    type-aliases-package: tk.mybatis.springboot.model
+    mapper-locations: classpath:mapper/*.xml
+mapper:
+    mappers:
+            - tk.mybatis.springboot.util.MyMapper
+    not-empty: false
+    identity: MYSQL
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql

@@ -1,0 +1,13 @@
+#server:
+#  port: 8082
+#  context-path: /springBootDemo
+#userNames: 蒋圣强 #使用userName作为属性名获取到的是DELL，可能userName是关键字。
+#nickName: Mr.J
+#user:  "userName: ${userNames}, nkicName: ${nickName}}"
+#
+#userMan:
+#  nickName: Mr.J
+#  sex: 男
+spring:
+  profiles:
+    active: prod
